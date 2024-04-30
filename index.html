@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toggle Button</title>
+  <style>
+    body {
+      background-color: #f0f0f0;
+      color: #333;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      transition: background-color 0.4s, color 0.4s;
+    }
+    body.dark-mode {
+      background-color: #222;
+      color: #f0f0f0;
+    }
+    .toggle-container {
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+    }
+    .toggle-btn {
+      position: relative;
+      width: 60px;
+      height: 34px;
+      margin-right: 10px;
+      border: 3px solid #ccc;
+      border-radius: 17px; /* half of height */
+      background-color: #ccc;
+      cursor: pointer;
+      transition: background-color 0.4s;
+    }
+    .toggle-btn input {
+      display: none;
+    }
+    .slider {
+      position: absolute;
+      top: 1px;
+      left: 1px;
+      width: 32px; 
+      height: 32px; 
+      background-color: #fff;
+      border-radius: 50%;
+      transition: transform 0.4s, background-color 0.4s;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    input:checked + .slider {
+      transform: translateX(26px);
+      background-color: black;
+    }
+    .toggle-label {
+      font-weight: bold;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      transition: opacity 0.4s;
+      pointer-events: none;
+    }
+    .toggle-btn:before {
+      content: "";
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, white, white);
+      transition: all 0.4s;
+      top: 2px;
+      left: 2px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    input:checked + .slider:before {
+      background-color: #fff;
+    }
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+    input:checked + .toggle-btn:before {
+      left: calc(100% - 2px);
+      transform: translateX(-100%);
+    }
+  </style>
+</head>
+<body>
+
+<div class="toggle-container">
+  <label class="toggle-btn">
+    <input type="checkbox">
+    <span class="slider"></span>
+    <span class="toggle-label"> </span>
+  </label>
+</div>
+
+<script>
+  const toggleBtn = document.querySelector('.toggle-btn input');
+  const body = document.querySelector('body');
+
+  toggleBtn.addEventListener('change', function() {
+    body.classList.toggle('dark-mode');
+  });
+</script>
+
+</body>
+</html>
